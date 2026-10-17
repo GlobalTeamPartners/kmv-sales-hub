@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анализ Конкурентов & Сравнение Цен на КМВ | Глобал Плюс</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-base: #0B0E14;
+    --bg-surface: #121721;
+    --bg-card: #18202E;
+    --gold: #C5A059;
+    --gold-light: #E0C07A;
+    --red: #EF4444;
+    --green: #10B981;
+    --blue: #3B82F6;
+    --white: #F8FAFC;
+    --text-dim: #94A3B8;
+    --border: rgba(197, 160, 89, 0.2);
+    --border-card: rgba(255, 255, 255, 0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-base);
+    color: var(--white);
+    padding: 40px 20px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-card);
+  }
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--gold);
+    color: #000;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .btn-back:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+  }
+  .brand-badge {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    color: var(--gold);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    max-width: 900px;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    color: #fff;
+    margin-top: 45px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-card);
+  }
+  
+  /* СРАВНИТЕЛЬНАЯ ТАБЛИЦА */
+  .table-wrap {
+    overflow-x: auto;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-card);
+    border-radius: 14px;
+    margin: 25px 0 40px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+  th, td {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-card);
+    vertical-align: top;
+  }
+  th {
+    background: #18202E;
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  tr.highlight-gp {
+    background: rgba(197, 160, 89, 0.08);
+  }
+  tr.highlight-gp td {
+    border-color: rgba(197, 160, 89, 0.3);
+    font-weight: 500;
+  }
+  .tag-win {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.2);
+    color: #6EE7B7;
+    border: 1px solid #10B981;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .tag-lose {
+    display: inline-block;
+    background: rgba(239, 68, 68, 0.15);
+    color: #FCA5A5;
+    border: 1px solid #EF4444;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  /* КАРТОЧКИ КАТЕГОРИЙ КОНКУРЕНТОВ */
+  .competitor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+    margin: 30px 0;
+  }
+  .comp-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-card);
+    border-radius: 14px;
+    padding: 26px;
+    position: relative;
+  }
+  .comp-card.border-red { border-top: 4px solid var(--red); }
+  .comp-card.border-blue { border-top: 4px solid var(--blue); }
+  .comp-card.border-gold { border-top: 4px solid var(--gold); }
+  .comp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .comp-type {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .comp-metric {
+    background: rgba(0,0,0,0.3);
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 0.88rem;
+  }
+  .comp-metric strong {
+    color: var(--gold-light);
+  }
+  .comp-weakness {
+    color: #CBD5E1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .comp-kill {
+    background: rgba(16, 185, 129, 0.1);
+    border-left: 3px solid var(--green);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #A7F3D0;
+  }
+
+  /* КАЛЬКУЛЯТОР ВЫГОДЫ */
+  .calc-box {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(18, 23, 33, 0.9) 100%);
+    border: 1px solid #10B981;
+    border-radius: 16px;
+    padding: 35px;
+    margin: 40px 0;
+  }
+  .calc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #6EE7B7;
+    margin-bottom: 12px;
+  }
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 20px;
+  }
+  .calc-col {
+    background: rgba(0,0,0,0.4);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-card);
+  }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="index.html" class="btn-back">&larr; В Центр Продаж КМВ</a>
+  <span class="brand-badge">КОНКУРЕНТНАЯ РАЗВЕДКА &bull; КМВ 2026</span>
+</div>
+
+<h1>Анализ Конкурентов & Стратегия Ценового Превосходства</h1>
+<p class="subtitle">Полное исследование рынка веб-разработки, digital-агентств и специализированных сервисов на Кавказских Минеральных Водах. Как позиционировать «Глобал Плюс», чтобы выигрывать 9 из 10 сделок.</p>
+
+<!-- СРАВНИТЕЛЬНАЯ ТАБЛИЦА -->
+<h2>1. Сводная Сравнительная Матрица: Глобал Плюс vs Рынок</h2>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="min-width: 170px;">Критерий</th>
+        <th style="min-width: 200px; color:#6EE7B7; background:#1E293B;">ГЛОБАЛ ПЛЮС (КМВ)</th>
+        <th style="min-width: 180px;">Местные Студии (Пятигорск)</th>
+        <th style="min-width: 180px;">TravelLine / Bnovo</th>
+        <th style="min-width: 190px;">Федеральные Интеграторы (1С)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight-gp">
+        <td><strong>Срок запуска</strong></td>
+        <td><span class="tag-win">48 ЧАСОВ (прототип)</span><br>7-14 дней под ключ</td>
+        <td><span class="tag-lose">1.5 – 3 месяца</span></td>
+        <td>2 – 4 недели интеграции</td>
+        <td><span class="tag-lose">6 – 12 месяцев</span></td>
+      </tr>
+      <tr class="highlight-gp">
+        <td><strong>Стоимость запуска (Setup)</strong></td>
+        <td><span class="tag-win">от 85 000 до 380 000 ₽</span><br><small style="color:var(--text-dim);">Доступный вход без рисков</small></td>
+        <td>40 000 – 150 000 ₽<br><small style="color:var(--text-dim);">Шаблонный сайт</small></td>
+        <td>От 30 000 до 120 000 ₽<br><small style="color:var(--text-dim);">Только модуль</small></td>
+        <td><span class="tag-lose">900 000 – 3 500 000 ₽</span></td>
+      </tr>
+      <tr class="highlight-gp">
+        <td><strong>Модель оплаты</strong></td>
+        <td><span class="tag-win">ФИКСИРОВАННЫЙ RETAINER</span><br>(от 18 000 до 65 000 ₽/мес)</td>
+        <td>Почасовая / За заявку<br>(15 000 – 30 000 ₽/мес)</td>
+        <td><span class="tag-lose">4% КОМИССИИ С ОБОРОТА</span><br>(до 800 000+ ₽/мес!)</td>
+        <td>От 120 000 ₽/мес за SLA</td>
+      </tr>
+      <tr class="highlight-gp">
+        <td><strong>Визуальный уровень</strong></td>
+        <td><span class="tag-win">60fps Кинематограф</span><br>Видеофон 4K, 3D, микроанимации</td>
+        <td>Шаблоны WordPress/Битрикс<br>Статика образца 2018 г.</td>
+        <td>Стандартный серый виджет бронирования</td>
+        <td>Тяжелые корпоративные формы</td>
+      </tr>
+      <tr class="highlight-gp">
+        <td><strong>ИИ & Telegram-боты</strong></td>
+        <td><span class="tag-win">Включено в коробку</span><br>Консьерж-боты, автозапись, 1С</td>
+        <td><span class="tag-lose">Нет компетенций</span></td>
+        <td>Только базовые SMS/Email</td>
+        <td>Отдельная разработка от 300к</td>
+      </tr>
+      <tr class="highlight-gp">
+        <td><strong>Работа на месте (КМВ)</strong></td>
+        <td><span class="tag-win">Личный выезд с iPad</span><br>Показ демо за 30 секунд</td>
+        <td>Офис в одном городе<br>Ждут в гости сами</td>
+        <td><span class="tag-lose">Только техподдержка онлайн</span></td>
+        <td>Московские менеджеры в Zoom</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- АНАЛИЗ ГРУПП КОНКУРЕНТОВ -->
+<h2>2. Детальный Разбор Конкурентов на КМВ</h2>
+
+<div class="competitor-grid">
+
+  <!-- ГРУППА 1 -->
+  <div class="comp-card border-red">
+    <div class="comp-title">Местные Веб-Студии КМВ</div>
+    <div class="comp-type">WEBELEMENT, Арт-Веб, Гиперкуб, Студия 360, фрилансеры</div>
+    
+    <div class="comp-metric">
+      <strong>Прайс:</strong> Лендинг 25к–45к ₽ | Корпоративный сайт 50к–120к ₽ | Интернет-магазин 80к–200к ₽<br>
+      <strong>Сроки:</strong> 30 – 90 дней
+    </div>
+    
+    <div class="comp-weakness">
+      <strong>Слабые места:</strong> Долгая разработка, бюрократия (требуют от клиента заполнить 20 страниц брифа), шаблонный устаревший дизайн без видеорядов, отсутствие специализированных B2B-конфигураторов и сложных Telegram-ботов с ИИ.
+    </div>
+
+    <div class="comp-kill">
+      ⚔️ <strong>Как побеждаем:</strong> Приходим на встречу УЖЕ С ГОТОВЫМ РАБОЧИМ ДЕМО за 48 часов под их бренд. Пока местная студия согласовывает бриф 3 недели — мы уже запускаем решение!
+    </div>
+  </div>
+
+  <!-- ГРУППА 2 -->
+  <div class="comp-card border-blue">
+    <div class="comp-title">Федеральные Системы Бронирования</div>
+    <div class="comp-type">TravelLine (TL: Booking), Bnovo, OTA-агрегаторы (Островок, Яндекс)</div>
+    
+    <div class="comp-metric">
+      <strong>Прайс:</strong> Островок 15-20% комиссии | TravelLine 4% с заезда + 0.5% эквайринг<br>
+      <strong>Потери санатория:</strong> от 300 000 до 1 200 000 ₽ КАЖДЫЙ МЕСЯЦ!
+    </div>
+    
+    <div class="comp-weakness">
+      <strong>Слабые места:</strong> Чудовищная переплата на процентах от оборота. Виджет TravelLine выглядит шаблонно и одинаково у всех 130 санаториев региона. Нет индивидуального видеоряда и эмоционального вовлечения гостя в покупку премиум-путевки.
+    </div>
+
+    <div class="comp-kill">
+      ⚔️ <strong>Как побеждаем:</strong> Мы предлагаем ФИКСИРОВАННУЮ плату за собственный брендовый модуль прямого бронирования. Экономия санатория — от 3 до 8 миллионов рублей в год!
+    </div>
+  </div>
+
+  <!-- ГРУППА 3 -->
+  <div class="comp-card border-gold">
+    <div class="comp-title">Тяжелые Интеграторы 1С / B2B</div>
+    <div class="comp-type">1С-Рарус Ставрополь, Первый БИТ, Агора, Корус Консалтинг</div>
+    
+    <div class="comp-metric">
+      <strong>Прайс:</strong> B2B-портал 900 000 – 3 500 000 ₽ | SLA 120 000+ ₽/мес<br>
+      <strong>Сроки:</strong> 6 – 12 месяцев
+    </div>
+    
+    <div class="comp-weakness">
+      <strong>Слабые места:</strong> Неподъемная стоимость и гигантские сроки для региональных швейных фабрик, молочных комбинатов и средних заводов вод. Сложные перегруженные интерфейсы, требующие месяцы обучения персонала.
+    </div>
+
+    <div class="comp-kill">
+      ⚔️ <strong>Как побеждаем:</strong> Наш B2B-шоурум и калькулятор партий стоит в 3-4 раза дешевле, разворачивается за 7-14 дней и управляется интуитивно даже с мобильного телефона снабженца.
+    </div>
+  </div>
+
+</div>
+
+<!-- ЖЕЛЕЗНЫЙ РАСЧЕТ ОКУПАЕМОСТИ ДЛЯ САНАТОРИЯ -->
+<div class="calc-box">
+  <div class="calc-title">💡 Убойный Аргумент для Главврачей Санаториев КМВ</div>
+  <p style="color: #E2E8F0; font-size: 1.05rem;">
+    Покажите этот расчет на встрече в Кисловодске или Ессентуках, и директор подпишет договор в тот же день:
+  </p>
+
+  <div class="calc-grid">
+    <div class="calc-col">
+      <h4 style="color:#F87171; text-transform:uppercase; font-size:0.85rem; margin-bottom:8px;">Вариант А: Работа через TravelLine / Агрегаторы</h4>
+      <p style="font-size:0.9rem; color:#CBD5E1;">
+        Санаторий на 200 номеров с летним оборотом 25 млн ₽ в месяц.<br>
+        • Комиссия TravelLine (4%): <strong>1 000 000 ₽/мес</strong>.<br>
+        • Комиссия Островка/Яндекса (15% с доли 30% броней): <strong>1 125 000 ₽/мес</strong>.<br>
+        <span style="color:#EF4444; font-size:1.1rem; font-weight:700;">ИТОГО ПОТЕРИ: 2 125 000 ₽ В МЕСЯЦ!</span><br>
+        За год санаторий дарит сторонним сервисам более <strong>15–20 миллионов рублей</strong>.
+      </p>
+    </div>
+
+    <div class="calc-col">
+      <h4 style="color:#34D399; text-transform:uppercase; font-size:0.85rem; margin-bottom:8px;">Вариант Б: Платформа прямого сбыта «Глобал Плюс»</h4>
+      <p style="font-size:0.9rem; color:#CBD5E1;">
+        Внедрение собственного скоростного модуля и Telegram-консьержа:<br>
+        • Разовый запуск (Setup): <strong>340 000 ₽</strong>.<br>
+        • Фиксированное сопровождение (Retainer): <strong>55 000 ₽/мес</strong>.<br>
+        • 0% комиссий с объема бронирований.<br>
+        <span style="color:#10B981; font-size:1.1rem; font-weight:700;">ЧИСТАЯ ЭКОНОМИЯ: БОЛЕЕ 10 000 000 ₽ В ГОД!</span><br>
+        Проект окупается на 100% за первые <strong>7 дней работы</strong>.
+      </p>
+    </div>
+  </div>
+</div>
+
+<h2>3. Новая Калиброванная Ценовая Сетка «Глобал Плюс»</h2>
+<p style="color:#CBD5E1; margin-bottom:20px;">Мы оптимизировали наши пакеты, сделав их <strong>абсолютно доступными для первого шага</strong> и выгодными на долгосрочной дистанции:</p>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-bottom:40px;">
+  
+  <div style="background:var(--bg-surface); border:1px solid var(--border-card); border-radius:12px; padding:22px;">
+    <div style="color:var(--gold); font-size:0.75rem; font-weight:700; text-transform:uppercase;">Тариф 1</div>
+    <div style="font-family:'Playfair Display', serif; font-size:1.25rem; color:#fff; margin:4px 0 8px;">«Экспресс-Старт»</div>
+    <div style="font-size:1.6rem; font-weight:700; color:var(--gold-light);">85 000 – 140 000 ₽</div>
+    <div style="font-size:0.85rem; color:var(--green); margin-bottom:12px;">Retainer: 18 000 – 25 000 ₽/мес</div>
+    <p style="font-size:0.85rem; color:var(--text-dim);">Убийца местных студий: кинематографичный лендинг + СБП + Telegram-бот за 48 часов. Для ресторанов, клиник, автосервисов.</p>
+  </div>
+
+  <div style="background:var(--bg-surface); border:1px solid var(--gold); border-radius:12px; padding:22px; box-shadow:0 8px 24px rgba(197,160,89,0.15);">
+    <div style="color:var(--gold); font-size:0.75rem; font-weight:700; text-transform:uppercase;">Тариф 2 (Хит продаж)</div>
+    <div style="font-family:'Playfair Display', serif; font-size:1.25rem; color:#fff; margin:4px 0 8px;">«Бизнес Экспансия»</div>
+    <div style="font-size:1.6rem; font-weight:700; color:var(--gold-light);">190 000 – 290 000 ₽</div>
+    <div style="font-size:0.85rem; color:var(--green); margin-bottom:12px;">Retainer: 35 000 – 50 000 ₽/мес</div>
+    <p style="font-size:0.85rem; color:var(--text-dim);">B2B-шоурумы, онлайн-подбор путевок, калькуляторы смет, интеграция 1С и CRM. Для швейных фабрик, санаториев 3-4*, девелоперов.</p>
+  </div>
+
+  <div style="background:var(--bg-surface); border:1px solid var(--border-card); border-radius:12px; padding:22px;">
+    <div style="color:var(--gold); font-size:0.75rem; font-weight:700; text-transform:uppercase;">Тариф 3</div>
+    <div style="font-family:'Playfair Display', serif; font-size:1.25rem; color:#fff; margin:4px 0 8px;">«Enterprise Флагман»</div>
+    <div style="font-size:1.6rem; font-weight:700; color:var(--gold-light);">360 000 – 480 000 ₽</div>
+    <div style="font-size:0.85rem; color:var(--green); margin-bottom:12px;">Retainer: 60 000 – 80 000 ₽/мес</div>
+    <p style="font-size:0.85rem; color:var(--text-dim);">Полная цифровая экосистема с прямым бронированием без комиссий, ЛК дистрибьютора, помарочным учетом. Для санаториев 5* и заводов вод.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

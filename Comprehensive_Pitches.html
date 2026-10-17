@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Каталог КП, Конкурентные Тарифы & ROI | Глобал Плюс КМВ</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-base: #0B0E14;
+    --bg-surface: #121721;
+    --bg-card: #18202E;
+    --gold: #C5A059;
+    --gold-light: #E0C07A;
+    --red: #D32F2F;
+    --green: #10B981;
+    --white: #F8FAFC;
+    --text-dim: #94A3B8;
+    --border: rgba(197, 160, 89, 0.2);
+    --border-card: rgba(255, 255, 255, 0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-base);
+    color: var(--white);
+    padding: 40px 20px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-card);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .nav-btns {
+    display: flex;
+    gap: 10px;
+  }
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-card);
+    color: var(--gold);
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .btn-back:hover {
+    background: var(--gold);
+    color: #000;
+  }
+  .btn-comp {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #6EE7B7;
+  }
+  .btn-comp:hover {
+    background: #10B981;
+    color: #000;
+  }
+  .brand-badge {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    color: var(--gold);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-card);
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .pricing-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-card);
+    border-radius: 14px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.3s;
+    position: relative;
+  }
+  .pricing-card.popular {
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
+  }
+  .popular-tag {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: var(--gold);
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .plan-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .plan-price {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+  }
+  .plan-retainer {
+    font-size: 0.9rem;
+    color: var(--green);
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+  .plan-desc {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .plan-features {
+    list-style: none;
+    margin: 0 0 25px 0;
+    padding: 0;
+  }
+  .plan-features li {
+    font-size: 0.88rem;
+    color: #CBD5E1;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .plan-features li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+  }
+  .sector-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-card);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .sector-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .roi-tag {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #6EE7B7;
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  .vs-banner {
+    background: rgba(197, 160, 89, 0.1);
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-btns">
+    <a href="index.html" class="btn-back">&larr; В Центр Продаж КМВ</a>
+    <a href="Competitors_Analysis.html" class="btn-back btn-comp">⚔️ Анализ Конкурентов</a>
+  </div>
+  <span class="brand-badge">КОНКУРЕНТНЫЕ ТАРИФЫ &bull; КМВ 2026</span>
+</div>
+
+<h1>Каталог Коммерческих Предложений, Тарифы & Окупаемость (ROI)</h1>
+<p style="font-size: 1.1rem; color: #94A3B8; margin-bottom: 20px;">Калиброванная трехуровневая ценовая сетка (Setup + Retainer), разработанная с учетом цен местных веб-студий Пятигорска и комиссий федеральных систем (TravelLine, Островок).</p>
+
+<div class="vs-banner">
+  <div>
+    <strong style="color:var(--gold-light);">Почему наши цены выигрывают у конкурентов?</strong>
+    <div style="font-size:0.88rem; color:#CBD5E1;">Дешевле 1С-интеграторов в 3 раза, быстрее местных студий в 10 раз, и экономит санаториям до 10 млн ₽/год на комиссиях агрегаторов.</div>
+  </div>
+  <a href="Competitors_Analysis.html" style="background:var(--gold); color:#000; padding:8px 16px; border-radius:6px; text-decoration:none; font-weight:700; font-size:0.85rem;">Смотреть сравнение &rarr;</a>
+</div>
+
+<h2>1. Калиброванные Тарифные Пакеты Global Plus</h2>
+
+<div class="pricing-grid">
+
+  <!-- ПАКЕТ 1: ЭКСПРЕСС-СТАРТ -->
+  <div class="pricing-card">
+    <div>
+      <div class="plan-name">«Экспресс-Старт»</div>
+      <div class="plan-price">85 000 – 140 000 ₽</div>
+      <div class="plan-retainer">+ 18 000 – 25 000 ₽/мес (Retainer)</div>
+      <p class="plan-desc">Убийца местных студий: ультра-быстрый старт за 48 часов для клиник, ресторанов, автоцентров, туроператоров и баз отдыха КМВ.</p>
+      <ul class="plan-features">
+        <li>Развертывание кинематографичного портала за 48 часов</li>
+        <li>Онлайн-бронирование или быстрый заказ с оплатой СБП</li>
+        <li>Умный Telegram-бот приема и квалификации заявок 24/7</li>
+        <li>Полная мобильная оптимизация (iOS, Android, планшеты)</li>
+        <li>Базовая аналитика (Яндекс.Метрика, цели, конверсии)</li>
+        <li>Гарантия и техподдержка первого уровня</li>
+      </ul>
+    </div>
+    <div style="font-size: 0.8rem; color: var(--gold);">Срок окупаемости: 7 – 14 дней</div>
+  </div>
+
+  <!-- ПАКЕТ 2: БИЗНЕС ЭКСПАНСИЯ (ХИТ) -->
+  <div class="pricing-card popular">
+    <div class="popular-tag">Хит продаж</div>
+    <div>
+      <div class="plan-name">«Бизнес Экспансия»</div>
+      <div class="plan-price">190 000 – 290 000 ₽</div>
+      <div class="plan-retainer">+ 35 000 – 50 000 ₽/мес (Retainer)</div>
+      <p class="plan-desc">Оптимально для швейных и меховых фабрик, санаториев 3-4*, застройщиков и производственных предприятий КМВ.</p>
+      <ul class="plan-features">
+        <li>60fps сайт с видеофоном 4K и покадровым скроллом</li>
+        <li>Интерактивный B2B-шоурум или модуль прямого бронирования</li>
+        <li>Интеграция с 1С:Предприятие, CRM (Битрикс24 / amoCRM)</li>
+        <li>Многофункциональный Telegram/WhatsApp ИИ-ассистент</li>
+        <li>Лидогенерация, сквозная воронка и A/B тестирование</li>
+        <li>Выделенный инженер поддержки Global Plus на связи</li>
+      </ul>
+    </div>
+    <div style="font-size: 0.8rem; color: var(--gold);">Срок окупаемости: 14 – 30 дней</div>
+  </div>
+
+  <!-- ПАКЕТ 3: ENTERPRISE ФЛАГМАН -->
+  <div class="pricing-card">
+    <div>
+      <div class="plan-name">«Enterprise Флагман»</div>
+      <div class="plan-price">360 000 – 480 000 ₽</div>
+      <div class="plan-retainer">+ 60 000 – 80 000 ₽/мес (Retainer)</div>
+      <p class="plan-desc">Для флагманских санаториев 4-5*, заводов минеральных вод, машиностроения, агрохимии и авиахабов.</p>
+      <ul class="plan-features">
+        <li>Комплексная цифровая экосистема с закрытыми ЛК</li>
+        <li>Собственный модуль прямого бронирования (0% комиссий!)</li>
+        <li>Калькуляторы вагонных/фурных партий с «Честным Знаком»</li>
+        <li>Синхронизация слотов разгрузки фур и складских остатков</li>
+        <li>Персональный архитектор проекта и ИИ-инженерия</li>
+        <li>Ежемесячный аудит безопасности и SLA 99.98%</li>
+      </ul>
+    </div>
+    <div style="font-size: 0.8rem; color: var(--gold);">Срок окупаемости: 30 – 45 дней</div>
+  </div>
+
+</div>
+
+<h2>2. Отраслевые Офферы & Обоснование ROI для Клиентов</h2>
+
+<div class="sector-box">
+  <div class="sector-title">🏨 Санаторно-Курортный Комплекс (Кисловодск, Ессентуки, Железноводск, Пятигорск)</div>
+  <p><strong>Оффер:</strong> Внедрение собственного брендового модуля прямого онлайн-бронирования путевок в обход агрегаторов (Островок, Яндекс Путешествия) и комиссий TravelLine (4%).</p>
+  <p><strong>Экономика ROI:</strong> При обороте санатория в 20 млн ₽ в месяц комиссия TravelLine 4% составляет <strong>800 000 ₽ ежемесячно</strong>. Внедрение решения «Глобал Плюс» с фиксированным ретейнером 65 000 ₽/мес экономит здравнице <strong>более 7.5 млн ₽ в год чистыми деньгами</strong>.</p>
+  <span class="roi-tag">ROI: Окупаемость за первые 7-10 дней работы</span>
+</div>
+
+<div class="sector-box">
+  <div class="sector-title">💧 Заводы Розлива Минеральных Вод (Ессентуки, Железноводск, Минводы)</div>
+  <p><strong>Оффер:</strong> B2B-портал для торговых сетей и дистрибьюторов: калькулятор вагонных/паллетных партий, проверка лимитов в 1С и система слотирования погрузки фур на пандусах.</p>
+  <p><strong>Экономика ROI:</strong> Ликвидация штрафов за простой автотранспорта (до 1.5 млн ₽/год) и разгрузка 4 менеджеров отдела сбыта от ручного ввода накладных.</p>
+  <span class="roi-tag">ROI: 300% в первый квартал внедрения</span>
+</div>
+
+<div class="sector-box">
+  <div class="sector-title">🧵 Легкая Промышленность & Меховой Кластер (Пятигорск)</div>
+  <p><strong>Оффер:</strong> Оптовый B2B-шоурум с видео коллекций 4K, моментальным выбором размерных сеток, автовыгрузкой спецификаций для маркетплейсов и виртуальной примеркой шуб.</p>
+  <p><strong>Экономика ROI:</strong> Сокращение времени согласования оптового заказа с региональными магазинами с 5 дней до 20 минут. Привлечение 3-5 новых оптовых дилеров окупает запуск в первый же месяц.</p>
+  <span class="roi-tag">ROI: Рост оптового оборота на 25-35%</span>
+</div>
+
+<div class="sector-box">
+  <div class="sector-title">🏗️ Курортный Девелопмент & Апартаменты (Кисловодск, Пятигорск, Ессентуки)</div>
+  <p><strong>Оффер:</strong> 3D-каталог апартаментов с панорамами видов на горы 360°, шахматкой лотов в реальном времени и калькулятором арендной доходности для иногородних покупателей.</p>
+  <p><strong>Экономика ROI:</strong> Сокращение цикла удаленной сделки с 3 месяцев до 14 дней. Продажа всего 1 дополнительного апартамента за 15 млн ₽ приносит сотни тысяч маржи, мгновенно перекрывая стоимость софта.</p>
+  <span class="roi-tag">ROI: 100% окупаемость за 1 проданный апартамент</span>
+</div>
+
+</body>
+</html>

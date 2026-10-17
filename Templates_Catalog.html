@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог Шаблонов Сайтов & Решений КМВ | Global Plus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #0B0E14;
+            --bg-surface: #121721;
+            --bg-card: #18202E;
+            --gold: #C5A059;
+            --gold-light: #E0C07A;
+            --red: #D32F2F;
+            --green: #10B981;
+            --blue: #2563EB;
+            --white: #F8FAFC;
+            --text-dim: #94A3B8;
+            --border: rgba(197, 160, 89, 0.2);
+            --border-card: rgba(255, 255, 255, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-base);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            padding: 30px 20px 80px;
+            line-height: 1.6;
+        }
+        .top-nav {
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-card);
+            color: var(--gold);
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .btn-back:hover {
+            background: var(--gold);
+            color: #000;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(197,160,89,0.12) 0%, rgba(18,23,33,0.8) 100%);
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            padding: 35px 40px;
+            margin-bottom: 35px;
+        }
+        .brand-badge {
+            display: inline-block;
+            color: var(--gold);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold-light);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            margin-bottom: 12px;
+        }
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.05rem;
+            max-width: 850px;
+        }
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 28px;
+        }
+        .tpl-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .tpl-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+        }
+        .tpl-header {
+            padding: 24px 24px 16px;
+        }
+        .tpl-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #6EE7B7;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        .tpl-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .tpl-desc {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .tpl-target {
+            background: rgba(0,0,0,0.3);
+            border-left: 3px solid var(--gold);
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.8rem;
+            color: #CBD5E1;
+            margin-bottom: 20px;
+        }
+        .tpl-footer {
+            padding: 16px 24px 24px;
+            border-top: 1px solid var(--border-card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0,0,0,0.2);
+        }
+        .btn-open {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--gold);
+            color: #000;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .btn-open:hover {
+            background: var(--gold-light);
+            transform: scale(1.02);
+        }
+        .deploy-badge {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-nav">
+    <a href="index.html" class="btn-back">&larr; В Центр Продаж КМВ</a>
+    <div style="font-size: 0.85rem; color: var(--gold);">16 Специализированных Решений для Кавказских Минеральных Вод</div>
+</div>
+
+<div class="container">
+    <div class="hero-banner">
+        <span class="brand-badge">АРСЕНАЛ ПАРТНЕРА GLOBAL PLUS</span>
+        <h1>Каталог 16 Отраслевых Решений & Шаблонов КМВ</h1>
+        <p class="subtitle">Готовые кинематографичные сайты, B2B-порталы, калькуляторы и ИИ-боты, адаптированные под специфику курортов, заводов минеральных вод, швейного кластера и промышленности Кавказских Минеральных Вод. Открывай прямо на планшете на встрече с директором.</p>
+    </div>
+
+    <div class="templates-grid">
+
+        <!-- 1. Санатории 4-5* -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Санаторно-курортный комплекс</span>
+                <h3 class="tpl-title">Курорты КМВ | Санаторий Премиум-Класса 4*-5*</h3>
+                <p class="tpl-desc">Кинематографичный портал здравницы с фоновым видео парка, 3D-туром по номерам, интерактивным подбором медицинских программ и модулем прямого бронирования без комиссий агрегаторов.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> Санаторий «Плаза СПА», «Русь», «Дворец Нарзанов», «Арника», «Источник», «Машук Аква-Терм».</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="https://globalteamgroup.github.io/horeca-grand-sample/" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 2. Заводы розлива минвод -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Добыча & Розлив Воды</span>
+                <h3 class="tpl-title">B2B Водный Портал & Дистрибуция Напитков</h3>
+                <p class="tpl-desc">B2B-экосистема для заводов минеральных вод: моментальный расчет логистики паллетных и вагонных партий, интеграция с 'Честным Знаком', сертификаты скважин и ЛК дистрибьютора.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> «Холдинг Аква», АО «Нарзан», ЗАО «Кавминводы» (Новотерская), УЗРМВ «Аква-Вайт», «Старый источник».</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="demos/wood-industry-demo/index.html" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 3. Швейные фабрики и легпром -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Легкая промышленность</span>
+                <h3 class="tpl-title">Швейная Фабрика & B2B Оптовый Шоурум</h3>
+                <p class="tpl-desc">B2B-платформа для производителей одежды: видео-демонстрация коллекций в движении, быстрый выбор размерных сеток, капсульный заказ и автовыгрузка спецификаций для маркетплейсов.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> Фабрика детской одежды «Bossa Nova» (ООО «Машук»), текстильные производства Пятигорска.</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="https://globalteamgroup.github.io/elite-detailing/" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 4. Меховой кластер -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Меховой кластер Пятигорска</span>
+                <h3 class="tpl-title">Меховой Бутик & Виртуальная Примерочная</h3>
+                <p class="tpl-desc">Ультра-стильная презентация изделий из натурального и эко-меха: покадровый свет ворса 4K, подбор шубы по параметрам фигуры, маркировка чипами и заказ бесплатного трансфера из санаториев.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> Меховые фабрики «Elena Furs», «Алеф», «Меха Елизаветы», «Каляев».</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="https://globalteamgroup.github.io/elite-detailing/" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 5. Курортный девелопмент -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Девелопмент & Недвижимость</span>
+                <h3 class="tpl-title">Курортный Девелопмент & Апарт-Отели</h3>
+                <p class="tpl-desc">Интерактивный 3D-каталог апартаментов и клубных домов: панорамы видов из окон на горы 360°, шахматка свободных лотов в реальном времени, расчет субсидированной ипотеки и арендной доходности.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> СЗ «Стройжилсервис», ГК «Новый Город», СК «Зодиак», СЗ «Капитал Строй».</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="https://globalteamgroup.github.io/luxury-estate-sample/" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 6. Медицинские центры -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Медицина & Диагностика</span>
+                <h3 class="tpl-title">Медицина КМВ | Диагностика & Санаторная Терапия</h3>
+                <p class="tpl-desc">Медицинская платформа для презентации высокотехнологичных протоколов, МРТ/КТ оборудования, врачей, онлайн-чекапов и защищенной выдачи результатов анализов в мессенджер.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> Медицинский центр «Панацея», клиника «Курортная больница» ФМБА, сеть «Три-З».</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="https://globalteamgroup.github.io/europa-clinic/" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 7. Стоматология -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Цифровая Стоматология</span>
+                <h3 class="tpl-title">Эстетическая Стоматология & 3D-Улыбка</h3>
+                <p class="tpl-desc">Интерактивная стоматологическая платформа: протокол 'Новая улыбка за отпуск', 3D-моделирование улыбок, фотопротоколы До/После и запись на консультацию с гарантией сроков.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> Стоматологический комплекс «Дента-Престиж» (Кисловодск), частные клиники КМВ.</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="https://globalteamgroup.github.io/lumiere-clinic-sample/" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 8. Промышленное оборудование -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Машиностроение & Заводы</span>
+                <h3 class="tpl-title">B2B Heavy Machinery & Equipment Configurator</h3>
+                <p class="tpl-desc">Интерактивный 3D-конфигуратор упаковочных и пищевых линий под габариты цеха заказчика, подбор по производительности и автоматическая выгрузка счетов и смет за 15 секунд.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> Завод фасовочного оборудования «Профитэкс», АО «АРЗИЛ», АО «Желдорреммаш» (МВЛРЗ).</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="demos/machinery-demo/index.html" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 9. Агрохимия и удобрения -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Химия & Удобрения</span>
+                <h3 class="tpl-title">Агрохимический Завод & B2B-Кабинет АПК</h3>
+                <p class="tpl-desc">B2B-система для производителей минеральных удобрений: расчет норм внесения NPK по культурам, расчет железнодорожных партий и ЛК агронома крупного агрохолдинга.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> АО «Алмаз Удобрения» / ООО «ГМЗ» (Лермонтов).</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="demos/wood-industry-demo/index.html" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 10. Молочные заводы -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Пищепром & Молоко</span>
+                <h3 class="tpl-title">Молочный Комбинат & HoReCa Снабжение</h3>
+                <p class="tpl-desc">Презентация молочного комбината для шеф-поваров санаториев и ресторанов: сертификаты, утренние поставки к завтраку, автоматический суточный заказ и личный кабинет.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> Пятигорский молочный комбинат (ПМК), Ессентукский гормолзавод, Винсадский молзавод.</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="https://globalteampartners.github.io/tentorium-presentation/" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 11. Мороженое и сладости -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Кондитерская & Мороженое</span>
+                <h3 class="tpl-title">Пищевой Комбинат & Дистрибуция Мороженого</h3>
+                <p class="tpl-desc">Премиальная презентация фабрики мороженого: каталоги продукции, 3D-витрина линеек пломбиров, контроль холодовой цепи и личный кабинет оптового дистрибьютора.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> ЗАО «Холод» (Пятигорское мороженое), Пятигорский хлебокомбинат.</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="https://globalteampartners.github.io/tentorium-presentation/" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 12. Премиум HoReCa -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">HoReCa & Рестораны</span>
+                <h3 class="tpl-title">HoReCa Grand | Ресторан Авторской Кухни & Банкеты</h3>
+                <p class="tpl-desc">Атмосферный ресторанный портал с виртуальной интерактивной картой залов, выбором стола с видом на горы, онлайн-депозитами через СБП и банкетным калькулятором.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> Ресторан «Высота 5642» (Кисловодск), «Шале», ресторанный комплекс «Парк Родник», «Крыша».</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="demos/horeca-demo/index.html" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 13. Горный туризм -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Туризм & Экспедиции</span>
+                <h3 class="tpl-title">Горный Туризм & Джип-Экспедиции Кавказа</h3>
+                <p class="tpl-desc">Платформа онлайн-бронирования авторских экскурсий в горы, джип-туров на Джилы-Су и Бермамыт с интерактивным выбором мест в автомобиле и онлайн-эквайрингом.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> Туроператоры «Кавказ-Тур», джиппинг-клубы, Терский конный завод.</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="https://globalteamgroup.github.io/tourism-sample/" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 14. Авиахаб и транспорт -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Транспорт & Авиация</span>
+                <h3 class="tpl-title">Авиахаб & Транспортная Экосистема КМВ</h3>
+                <p class="tpl-desc">Цифровой портал сервисов авиапассажиров и логистических парков: онлайн-бронирование залов повышенной комфортности (VIP/бизнес), трансферы в санатории и тайм-слоты фур.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> Международный аэропорт Минеральные Воды, Логистический терминал «Южный Хаб».</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="https://globalteamgroup.github.io/tourism-sample/" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 15. Детейлинг и автоуход -->
+        <div class="tpl-card">
+            <div class="tpl-header">
+                <span class="tpl-badge">Премиум Автоуход</span>
+                <h3 class="tpl-title">Elite Detailing | Центр Премиального Автоухода</h3>
+                <p class="tpl-desc">Покадровый 60fps скролл автомобиля с подсветкой защитных зон кузова, калькулятор пакетов оклейки полиуретаном, керамика 9H и моментальная запись в бокс.</p>
+                <div class="tpl-target">🎯 <strong>Целевые предприятия:</strong> «Detailing Club KMV» (Пятигорск), автодилерские центры КМВ.</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Запуск прототипа: 48 часов</span>
+                <a href="https://globalteamgroup.github.io/elite-detailing/" target="_blank" class="btn-open">Открыть Демо &nearr;</a>
+            </div>
+        </div>
+
+        <!-- 16. Шоурил Global Plus -->
+        <div class="tpl-card" style="border-color: rgba(197, 160, 89, 0.4);">
+            <div class="tpl-header">
+                <span class="tpl-badge" style="background: rgba(197,160,89,0.2); color: #E0C07A; border-color: #C5A059;">Флагман Агентства</span>
+                <h3 class="tpl-title">Global Plus | Официальный Презентационный Портал</h3>
+                <p class="tpl-desc">Официальный презентационный портал агентства: демонстрация возможностей ИИ-автоматизации, кинематографичной разработки за 48 часов и международных стандартов Global Team Partners.</p>
+                <div class="tpl-target">🎯 <strong>Назначение:</strong> Генеральная презентация компании «Глобал Плюс» перед первыми лицами корпораций и холдингов КМВ.</div>
+            </div>
+            <div class="tpl-footer">
+                <span class="deploy-badge">⚡ Официальный ресурс</span>
+                <a href="https://globalteamgroup.github.io/global-plus/" target="_blank" class="btn-open">Открыть Шоурил &nearr;</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

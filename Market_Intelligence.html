@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Разведка Рынка КМВ: Аналитический Отчет | Глобал Плюс</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-base: #0B0E14;
+    --bg-surface: #121721;
+    --bg-card: #18202E;
+    --gold: #C5A059;
+    --gold-light: #E0C07A;
+    --red: #D32F2F;
+    --green: #10B981;
+    --blue: #2563EB;
+    --white: #F8FAFC;
+    --text-dim: #94A3B8;
+    --border: rgba(197, 160, 89, 0.2);
+    --border-card: rgba(255, 255, 255, 0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-base);
+    color: var(--white);
+    padding: 40px 20px 80px;
+    max-width: 960px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-card);
+  }
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--gold);
+    color: #000;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .btn-back:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+  }
+  .brand-badge {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    color: var(--gold);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    margin-top: 40px;
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-card);
+  }
+  h3 {
+    font-size: 1.2rem;
+    color: var(--gold-light);
+    margin-top: 25px;
+    margin-bottom: 10px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 25px 0 35px;
+  }
+  .stat-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-card);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .stat-lbl {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+  .intel-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-card);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 24px;
+    margin: 20px 0;
+  }
+  .intel-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a href="index.html" class="btn-back">&larr; В Центр Продаж КМВ</a>
+  <span class="brand-badge">АНАЛИТИЧЕСКИЙ ОТЧЕТ • КМВ 2026</span>
+</div>
+
+<h1>Разведка Рынка Кавказских Минеральных Вод (КМВ)</h1>
+<p style="font-size: 1.15rem; color: #94A3B8;">Комплексный анализ экономической структуры агломерации, финансовых потоков курортного кластера, заводов розлива минеральных вод и промышленности.</p>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="stat-num">2.8+ млн</div>
+    <div class="stat-lbl">Туристов в год</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">130+</div>
+    <div class="stat-lbl">Санаториев и отелей</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">33%</div>
+    <div class="stat-lbl">Всех минвод России</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">4.5+ млн</div>
+    <div class="stat-lbl">Пассажиров авиахаба</div>
+  </div>
+</div>
+
+<h2>1. Структура Экономики Агломерации КМВ</h2>
+<p>Кавказские Минеральные Воды (КМВ) — это полицентрическая городская агломерация юга России с населением более 1.2 млн человек, расположенная на стыке Ставропольского края и республик Северного Кавказа. Регион сочетает высочайшую курортную ренту, круглогодичный приток платежеспособных гостей и мощные индустриальные кластеры.</p>
+
+<div class="intel-card">
+  <div class="intel-title">1. Санаторно-Курортный и Бальнеологический Комплекс (Флагман региона)</div>
+  <p style="color:#CBD5E1; font-size:0.95rem;">
+    Главная отрасль экономики. Санатории Кисловодска, Ессентуков, Железноводска и Пятигорска принимают отдыхающих со всей России круглый год (загрузка летом 98-100%, в межсезонье 75-85%). Спрос подстегнут закрытием зарубежных направлений и ростом тренда на превентивную медицину и долголетие. Средний чек путевки на человека за 14 дней составляет от 90 000 до 350 000+ ₽ в премиум-сегменте.
+  </p>
+  <p style="color:#C5A059; font-size:0.9rem; margin-top:8px;">
+    <strong>Точка входа для Global Plus:</strong> Ликвидация комиссий агрегаторов (15-20%), внедрение умного прямого бронирования, консьерж-ботов и допродаж премиальных чекапов.
+  </p>
+</div>
+
+<div class="intel-card">
+  <div class="intel-title">2. Индустрия Добычи и Розлива Минеральных Вод</div>
+  <p style="color:#CBD5E1; font-size:0.95rem;">
+    На КМВ приходится треть всех разведанных запасов минеральных вод РФ. Лидеры рынка — «Холдинг Аква» (бренды Ессентуки 4, 17, Нарзан, Архыз Vita), АО «Нарзан», ЗАО «Кавминводы» (Новотерская), УЗРМВ «Аква-Вайт», «Старый источник». Продукция поставляется в 100% федеральных торговых сетей РФ и экспортируется в десятки стран.
+  </p>
+  <p style="color:#C5A059; font-size:0.9rem; margin-top:8px;">
+    <strong>Точка входа для Global Plus:</strong> B2B-порталы дистрибьюторов, интеграция систем помарочного учета «Честный Знак», автоматизация вагонных партий и слотирование погрузки фур.
+  </p>
+</div>
+
+<div class="intel-card">
+  <div class="intel-title">3. Легкая Промышленность и Швейный Кластер (Пятигорск)</div>
+  <p style="color:#CBD5E1; font-size:0.95rem;">
+    Пятигорск — историческая столица легпрома юга России. Здесь действует крупнейшая в стране фабрика детской одежды «Bossa Nova» (ООО «Машук»), десятки меховых фабрик полного цикла («Elena Furs», «Алеф», «Меха Елизаветы») и гигантский оптовый вещевой комплекс ТК «Лира», снабжающий одеждой весь Кавказ, Поволжье и Черноземье.
+  </p>
+  <p style="color:#C5A059; font-size:0.9rem; margin-top:8px;">
+    <strong>Точка входа для Global Plus:</strong> Оптовые цифровые B2B-шоурумы с видеопоказом коллекций, моментальный набор размерных рядов, Telegram-магазины и автовыгрузка на маркетплейсы.
+  </p>
+</div>
+
+<div class="intel-card">
+  <div class="intel-title">4. Девелоперский Бум и Курортная Недвижимость</div>
+  <p style="color:#CBD5E1; font-size:0.95rem;">
+    Кисловодск, Ессентуки и Пятигорск переживают беспрецедентный строительный бум. Цены за квадратный метр в элитных апарт-отелях Кисловодска достигли 250 000 – 400 000 ₽/м², конкурируя с Сочи. Основные покупатели — инвесторы из Москвы, Сибири и нефтяных регионов, приобретающие недвижимость для круглогодичной сдачи курортникам.
+  </p>
+  <p style="color:#C5A059; font-size:0.9rem; margin-top:8px;">
+    <strong>Точка входа для Global Plus:</strong> 3D-каталоги с панорамами 360°, вид на горы, интерактивные шахматки свободных квартир и калькуляторы арендной доходности для удаленных инвесторов.
+  </p>
+</div>
+
+<div class="intel-card">
+  <div class="intel-title">5. Машиностроение, Химия и Логистика (Минводы, Лермонтов, Георгиевск)</div>
+  <p style="color:#CBD5E1; font-size:0.95rem;">
+    Индустриальное ядро КМВ: Международный аэропорт Минеральные Воды (4.5+ млн пассажиров), локомотиворемонтный завод МВЛРЗ (РЖД), завод фасовочного оборудования «Профитэкс», приборостроительный завод «Импульс», химический гигант «Алмаз Удобрения» (Лермонтов) и Георгиевский арматурный завод «АРЗИЛ».
+  </p>
+  <p style="color:#C5A059; font-size:0.9rem; margin-top:8px;">
+    <strong>Точка входа для Global Plus:</strong> 3D-конфигураторы промышленного оборудования, автоматизация подбора арматуры и удобрений под ТЗ заказчика, тайм-менеджмент логистических хабов.
+  </p>
+</div>
+
+<h2>2. Вывод и Стратегический Фокус</h2>
+<p>Бизнес региона Кавказских Минеральных Вод обладает колоссальной платежеспособностью и готов инвестировать в качественные IT-решения, если они приносят реальную экономию или рост прямых продаж. Главный барьер — консервативность и недоверие к удаленным агентствам. Присутствие официального представителя «Глобал Плюс» на месте в связке с запуском готовых прототипов за 48 часов гарантирует высокий процент конверсии встреч в заключенные контракты.</p>
+
+</body>
+</html>

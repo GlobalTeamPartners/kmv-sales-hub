@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>База 72 Целевых Предприятий КМВ | Глобал Плюс</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #0B0E14;
+            --bg-surface: #121721;
+            --bg-card: #18202E;
+            --gold: #C5A059;
+            --gold-light: #E0C07A;
+            --red: #D32F2F;
+            --green: #10B981;
+            --blue: #2563EB;
+            --purple: #8B5CF6;
+            --white: #F8FAFC;
+            --text-dim: #94A3B8;
+            --border: rgba(197, 160, 89, 0.2);
+            --border-card: rgba(255, 255, 255, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-base);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            padding: 30px 20px;
+            line-height: 1.5;
+        }
+        .top-nav {
+            max-width: 1400px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-card);
+            color: var(--gold);
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .btn-back:hover {
+            background: var(--gold);
+            color: #000;
+        }
+        .nav-meta {
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+        p.subtitle {
+            color: var(--text-dim);
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+
+        /* ФИЛЬТРЫ И ПОИСК */
+        .controls-panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .search-box input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-card);
+            padding: 12px 18px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-box input:focus {
+            border-color: var(--gold);
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .filter-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gold);
+            min-width: 80px;
+        }
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-card);
+            color: var(--text-dim);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* ТАБЛИЦА */
+        .table-responsive {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--border-card);
+            font-size: 0.9rem;
+            vertical-align: top;
+        }
+        th {
+            background: #18202E;
+            color: var(--gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* БЕЙДЖИ ОТРАСЛЕЙ */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .bg-resort { background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .bg-water { background: rgba(59, 130, 246, 0.15); color: #60A5FA; border: 1px solid rgba(59, 130, 246, 0.4); }
+        .bg-fur { background: rgba(234, 179, 8, 0.15); color: #FACC15; border: 1px solid rgba(234, 179, 8, 0.4); }
+        .bg-food { background: rgba(20, 184, 166, 0.15); color: #2DD4BF; border: 1px solid rgba(20, 184, 166, 0.4); }
+        .bg-machine { background: rgba(139, 92, 246, 0.15); color: #C084FC; border: 1px solid rgba(139, 92, 246, 0.4); }
+        .bg-dev { background: rgba(249, 115, 22, 0.15); color: #FB923C; border: 1px solid rgba(249, 115, 22, 0.4); }
+        .bg-med { background: rgba(236, 72, 153, 0.15); color: #F472B6; border: 1px solid rgba(236, 72, 153, 0.4); }
+        .bg-horeca { background: rgba(244, 63, 94, 0.15); color: #FB7185; border: 1px solid rgba(244, 63, 94, 0.4); }
+        .bg-auto { background: rgba(99, 102, 241, 0.15); color: #818CF8; border: 1px solid rgba(99, 102, 241, 0.4); }
+        .bg-tour { background: rgba(45, 212, 191, 0.15); color: #5EEAD4; border: 1px solid rgba(45, 212, 191, 0.4); }
+
+        .region-pill {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .persona-tag {
+            font-size: 0.8rem;
+            color: #E2E8F0;
+            font-weight: 500;
+        }
+        .contact-small {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+        }
+        .btn-deck {
+            background: var(--gold);
+            color: #000;
+        }
+        .btn-deck:hover {
+            background: var(--gold-light);
+        }
+        .btn-pager {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-card);
+            color: #fff;
+        }
+        .btn-pager:hover {
+            background: #fff;
+            color: #000;
+        }
+        .btn-tpl {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #6EE7B7;
+        }
+        .btn-tpl:hover {
+            background: var(--green);
+            color: #000;
+        }
+        .price-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: #34D399;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+        .count-tag {
+            background: rgba(197, 160, 89, 0.2);
+            color: var(--gold-light);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-left: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-nav">
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <a href="index.html" class="btn-back">&larr; В Центр Продаж</a>
+        <a href="Competitors_Analysis.html" class="btn-back" style="color:#F87171; border-color:rgba(239,68,68,0.4);">⚔️ Анализ Конкурентов & Цены</a>
+        <a href="Comprehensive_Pitches.html" class="btn-back" style="color:#34D399; border-color:rgba(16,185,129,0.4);">💰 Каталог 72 КП & ROI</a>
+    </div>
+    <div class="nav-meta">
+        <span>Региональный охват: <strong>72 ключевых предприятия</strong></span>
+        <span>&bull;</span>
+        <span>16 решений Global Plus</span>
+        <span>&bull;</span>
+        <span>7 городов агломерации</span>
+    </div>
+</div>
+
+<div class="container">
+    <h1>📋 Единая База 72 Целевых Предприятий КМВ</h1>
+    <p class="subtitle">Пятигорск &bull; Кисловодск &bull; Ессентуки &bull; Железноводск &bull; Минеральные Воды &bull; Лермонтов &bull; Георгиевск | Точки входа, контакты ЛПР, боли, офферы и готовые презентации</p>
+
+    <!-- ПАНЕЛЬ ПОИСКА И ФИЛЬТРАЦИИ -->
+    <div class="controls-panel">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Быстрый поиск по названию, городу, специализации, ЛПР или боли...">
+        </div>
+        
+        <div class="filter-group" id="regionFilters">
+            <span class="filter-label">Локация:</span>
+            <button class="filter-btn active" data-region="all">Все города <span class="count-tag" id="count-all">72</span></button>
+            <button class="filter-btn" data-region="Пятигорск">Пятигорск <span class="count-tag">18</span></button>
+            <button class="filter-btn" data-region="Кисловодск">Кисловодск <span class="count-tag">16</span></button>
+            <button class="filter-btn" data-region="Ессентуки">Ессентуки <span class="count-tag">14</span></button>
+            <button class="filter-btn" data-region="Железноводск">Железноводск <span class="count-tag">9</span></button>
+            <button class="filter-btn" data-region="Минеральные Воды">Минеральные Воды <span class="count-tag">8</span></button>
+            <button class="filter-btn" data-region="Лермонтов">Лермонтов <span class="count-tag">4</span></button>
+            <button class="filter-btn" data-region="Георгиевск">Георгиевск <span class="count-tag">3</span></button>
+        </div>
+
+        <div class="filter-group" id="sectorFilters">
+            <span class="filter-label">Отрасль:</span>
+            <button class="filter-btn active" data-sector="all">Все отрасли</button>
+            <button class="filter-btn" data-sector="Санатории & Курорты">Санатории & Здравницы</button>
+            <button class="filter-btn" data-sector="Розлив Минвод">Розлив Минеральных Вод</button>
+            <button class="filter-btn" data-sector="Легпром & Меха">Легпром & Меховой Кластер</button>
+            <button class="filter-btn" data-sector="Пищепром & Агро">Пищепром & Агро</button>
+            <button class="filter-btn" data-sector="Машиностроение">Машиностроение & Химия</button>
+            <button class="filter-btn" data-sector="Девелопмент">Девелопмент & ЖК</button>
+            <button class="filter-btn" data-sector="Медицина & Эстетика">Медицина & Эстетика</button>
+            <button class="filter-btn" data-sector="HoReCa & Рестораны">HoReCa & Рестораны</button>
+            <button class="filter-btn" data-sector="Транспорт & Авто">Транспорт, Логистика & Авто</button>
+            <button class="filter-btn" data-sector="Туризм & Сервисы">Туризм & Экскурсии</button>
+        </div>
+    </div>
+
+    <!-- ТАБЛИЦА БАЗЫ ДАННЫХ -->
+    <div class="table-responsive">
+        <table id="leadsTable">
+            <thead>
+                <tr>
+                    <th style="min-width: 240px;">Предприятие / Бренд</th>
+                    <th>Локация</th>
+                    <th>Отрасль</th>
+                    <th style="min-width: 220px;">Целевое ЛПР & Контакты</th>
+                    <th style="min-width: 300px;">Питч "Троянского коня" & Шаблон</th>
+                    <th style="min-width: 210px;">Инструменты Партнера</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Заполняется динамически из data.js -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+    const tableBody = document.getElementById('tableBody');
+    const searchInput = document.getElementById('searchInput');
+    const regionButtons = document.querySelectorAll('#regionFilters .filter-btn');
+    const sectorButtons = document.querySelectorAll('#sectorFilters .filter-btn');
+
+    let currentRegion = 'all';
+    let currentSector = 'all';
+    let searchQuery = '';
+
+    function renderTable() {
+        tableBody.innerHTML = '';
+        
+        const filtered = kmvLeads.filter(item => {
+            const matchRegion = (currentRegion === 'all' || item.region === currentRegion);
+            const matchSector = (currentSector === 'all' || item.sector === currentSector);
+            
+            const textToSearch = [
+                item.name, 
+                item.region, 
+                item.sector, 
+                item.focus, 
+                item.target_persona, 
+                item.pain_point, 
+                item.trojan_pitch, 
+                item.contact_info,
+                item.template_name
+            ].join(' ').toLowerCase();
+
+            const matchSearch = searchQuery === '' || textToSearch.includes(searchQuery.toLowerCase());
+            return matchRegion && matchSector && matchSearch;
+        });
+
+        if (filtered.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 40px; color: var(--text-dim);">
+                По вашему запросу предприятий не найдено. Попробуйте сбросить фильтры.
+            </td></tr>`;
+            return;
+        }
+
+        filtered.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.setAttribute('data-id', item.id);
+            tr.innerHTML = `
+                <td>
+                    <strong>${item.name}</strong><br>
+                    <span style="font-size:0.8rem; color:#94A3B8;">${item.focus}</span>
+                </td>
+                <td><span class="region-pill">${item.region}</span></td>
+                <td><span class="badge ${item.badge_class}">${item.sector}</span></td>
+                <td>
+                    <span class="persona-tag">${item.target_persona}</span>
+                    <div class="contact-small">📍 ${item.contact_info}</div>
+                </td>
+                <td style="font-size:0.85rem; color:#E2E8F0;">
+                    <strong>Боль:</strong> <span style="color:#FF8A80;">${item.pain_point}</span><br>
+                    <div style="margin-top:6px;"><strong>Оффер за 48ч:</strong> ${item.trojan_pitch}</div>
+                    <div style="margin-top:6px; font-size:0.8rem; color:#C5A059;">
+                        <strong>Решение:</strong> <a href="${item.template_url}" target="_blank" style="color:#E0C07A; text-decoration:underline;">${item.template_name}</a>
+                    </div>
+                    <div><span class="price-badge">Пакет: ${item.price_setup} | Ретейнер: ${item.price_retainer}</span></div>
+                </td>
+                <td style="white-space:nowrap;">
+                    <a href="Dynamic_Pitch_Deck.html?id=${item.id}" target="_blank" class="btn-action btn-deck" title="Открыть интерактивную презентацию для iPad">📊 Слайды</a>
+                    <a href="Dynamic_One_Pager.html?id=${item.id}" target="_blank" class="btn-action btn-pager" title="Открыть КП-одностраничник для печати А4">📄 1-Pager</a>
+                    <a href="${item.template_url}" target="_blank" class="btn-action btn-tpl" title="Открыть живой шаблон сайта Global Plus">🌐 Демо</a>
+                </td>
+            `;
+            tableBody.appendChild(tr);
+        });
+    }
+
+    // Обработчики региона
+    regionButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            regionButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentRegion = btn.getAttribute('data-region');
+            renderTable();
+        });
+    });
+
+    // Обработчики отрасли
+    sectorButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            sectorButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentSector = btn.getAttribute('data-sector');
+            renderTable();
+        });
+    });
+
+    // Поиск
+    searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        renderTable();
+    });
+
+    // Первичный рендер
+    renderTable();
+</script>
+
+</body>
+</html>
